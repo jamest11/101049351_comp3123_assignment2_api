@@ -23,6 +23,6 @@ mongoose.connect(process.env.DB_URI, {
 app.use('/api/emp', employeeRoutes);
 app.use('/api/user', userRoutes);
 
-app.listen(process.env.API_PORT, () => {
-    console.log(`Server is listening on port ${process.env.API_PORT}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server is listening on port ${process.env.PORT}`);
 });
