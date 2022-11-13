@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon -r dotenv/config server.js"
   },
   "engines": {
     "node": "18.x"
@@ -14,11 +14,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-jwt": "^7.7.5",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.6.5",
-    "nodemon": "^2.0.20"
+    "mongoose": "^6.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "dotenv": "^16.0.3"
   }
 }
