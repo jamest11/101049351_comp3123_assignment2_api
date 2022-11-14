@@ -1,6 +1,6 @@
 {
-  "name": "assignment2-api",
-  "version": "1.0.0",
+  "name": "assignment2_api",
+  "version": "0.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
