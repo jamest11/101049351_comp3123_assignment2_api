@@ -19,7 +19,9 @@ mongoose.connect(process.env.DB_URI, {
     process.exit();
 });
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://comp3123-a2-api-43405.herokuapp.com'
+}));
 
 app.use('/api/emp', employeeRoutes);
 app.use('/api/user', userRoutes);
