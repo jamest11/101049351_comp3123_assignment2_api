@@ -6,7 +6,7 @@ const employeeRoutes = require('./routes/employee_routes');
 const userRoutes = require('./routes/user_routes');
 
 const app = express();
-app.use(express.json(strict=false));
+app.use(express.json());
 
 mongoose.connect(process.env.DB_URI, {
     useNewUrlParser: true,

@@ -18,7 +18,6 @@ routes.post("/signup", async (req, res) => {
 });
     
 routes.post("/login", async (req, res) => {
-    console.log(req.body);
     try {
         const { username, email, password } = req.body;
         let user = null;
