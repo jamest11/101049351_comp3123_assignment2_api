@@ -20,7 +20,7 @@ mongoose.connect(process.env.DB_URI, {
 });
 
 app.use(cors({
-    origin: 'https://comp3123-a2-api-43405.herokuapp.com/'
+    origin: '*'
 }));
 
 app.use('/api/emp', employeeRoutes);
