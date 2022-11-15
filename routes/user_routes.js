@@ -1,10 +1,16 @@
 const express = require("express");
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const cors = require('cors');
 
 const routes = express.Router()
 
 const responseMsg = (status, message) => { return { status, message } };
+
+const corsOptions = {
+    origin: 'https://comp3123-a2-api-43405.herokuapp.com',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
 
 routes.post("/signup", async (req, res) => {
     try {
@@ -17,7 +23,7 @@ routes.post("/signup", async (req, res) => {
 
 });
     
-routes.post("/login", async (req, res) => {
+routes.post("/login", cors(corsOptions), async (req, res) => {
     try {
         const { username, email, password } = req.body;
         let user = null;
