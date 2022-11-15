@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const employeeRoutes = require('./routes/employee_routes');
 const userRoutes = require('./routes/user_routes');
@@ -17,6 +18,8 @@ mongoose.connect(process.env.DB_URI, {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
 });
+
+app.use(cors({ origin: 'https://comp3123-a2-api-43405.herokuapp.com' }));
 
 app.use('/api/emp', employeeRoutes);
 app.use('/api/user', userRoutes);
