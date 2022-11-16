@@ -11,7 +11,7 @@ routes.use(expressJwt.expressjwt({ secret: process.env.TOKEN_KEY, algorithms: ['
 
 routes.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {
-        res.status(401).json(responseMsg(false, 'Invalid bearer auth token'));
+        res.status(401).json(responseMsg('false', 'Invalid bearer auth token'));
     } else {
         next(err);
     }
@@ -47,7 +47,7 @@ routes.get('/employees/:eid', async (req, res) => {
         const employee = await Employee.findById(req.params.eid);
         return res.status(200).json(employee);
     } catch (err) {
-        return res.status(500).json(responseMsg(false, "Invalid Employee ID"));
+        return res.status(500).json(responseMsg('false', "Invalid Employee ID"));
     }
 });
 
@@ -58,7 +58,7 @@ routes.put('/employees/:eid', async (req, res) => {
         const employee = await Employee.findByIdAndUpdate(req.params.eid, req.body, { new: true });
         return res.status(200).json(employee);
     } catch (err) {
-        return res.status(500).json(responseMsg(false, "Invalid Employee ID"));
+        return res.status(500).json(responseMsg('false', "Invalid Employee ID"));
     }
 });
 
@@ -68,16 +68,16 @@ routes.delete('/employees', async (req, res) => {
     try {
         const eid = req.query.eid;
         if(!eid || !mongoose.isValidObjectId(eid)){
-            return res.status(500).json(responseMsg(false, 'Invalid employee ID'));
+            return res.status(500).json(responseMsg('false', 'Invalid employee ID'));
         } 
 
         const employee = await Employee.findByIdAndDelete(eid);
     
         if (!employee) {
-            return res.status(500).json(responseMsg(false, 'Employee not found'));
+            return res.status(500).json(responseMsg('false', 'Employee not found'));
         }
 
-        return res.status(200).json(responseMsg(true, "Employee successfully deleted"));
+        return res.status(200).json(responseMsg('true', "Employee successfully deleted"));
     } catch (err) {
         console.log(err)
         return res.status(500).send(err);
