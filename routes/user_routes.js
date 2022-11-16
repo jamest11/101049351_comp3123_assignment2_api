@@ -34,7 +34,7 @@ routes.post("/login", async (req, res) => {
             const token =  jwt.sign({ user: user._id }, process.env.TOKEN_KEY, { expiresIn: '2h', });
     
             const response = {
-                status: true,
+                status: 'true',
                 username: user.username,
                 email: user.email,
                 message: 'User logged in successfully',
