@@ -23,7 +23,7 @@ routes.post("/login", async (req, res) => {
         let user = null;
 
         if (!password || !(username || password)) {
-            return res.status(401).json(responseMsg('false', 'Username/email and password required'));
+            return res.status(401).json(responseMsg(false, 'Username/email and password required'));
         } else if(username) {
             user = await User.findOne({ username });
         } else {
@@ -34,7 +34,7 @@ routes.post("/login", async (req, res) => {
             const token =  jwt.sign({ user: user._id }, process.env.TOKEN_KEY, { expiresIn: '2h', });
     
             const response = {
-                status: 'true',
+                status: true,
                 username: user.username,
                 email: user.email,
                 message: 'User logged in successfully',
@@ -43,7 +43,7 @@ routes.post("/login", async (req, res) => {
 
             return res.status(200).json(response);
         } 
-        return res.status(401).json(responseMsg('false', 'Invalid username/password'));
+        return res.status(401).json(responseMsg(false, 'Invalid username/password'));
 
     } catch (err) {
         console.log(err)
