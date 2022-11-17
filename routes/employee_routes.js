@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const expressJwt = require('express-jwt');
 const Employee = require('../models/employee');
+const employee = require('../models/employee');
 
 const routes = express.Router();
 
@@ -44,7 +45,8 @@ routes.post('/employees', async (req, res) => {
 // User can get employee details by employee id
 routes.get('/employees/:eid', async (req, res) => {
     try {
-        const employee = await Employee.findById(req.params.eid);
+        // const employee = await Employee.findById(req.params.eid);
+        const employee = await Employee.findOne({ eid: req.params.eid});
         return res.status(200).json(employee);
     } catch (err) {
         return res.status(500).json(responseMsg(false, "Invalid Employee ID"));

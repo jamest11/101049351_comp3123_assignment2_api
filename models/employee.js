@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 /*
 Employee {
@@ -48,5 +49,7 @@ const employeeSchema = new mongoose.Schema({
         min: [0, 'Salary must be greater than zero']
     },
 });
+
+employeeSchema.plugin(AutoIncrement, {inc_field: 'eid'});
 
 module.exports = mongoose.model('Employee', employeeSchema, 'employees');
