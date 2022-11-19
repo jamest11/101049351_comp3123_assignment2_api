@@ -46,7 +46,7 @@ routes.post('/employees', async (req, res) => {
 routes.get('/employees/:eid', async (req, res) => {
     try {
         // const employee = await Employee.findById(req.params.eid);
-        const employee = await Employee.findOne({ eid: req.params.eid});
+        const employee = await Employee.findOne({ eid: req.params.eid });
         return res.status(200).json(employee);
     } catch (err) {
         return res.status(500).json(responseMsg(false, "Invalid Employee ID"));
@@ -57,7 +57,7 @@ routes.get('/employees/:eid', async (req, res) => {
 // User can update employee details
 routes.put('/employees/:eid', async (req, res) => {
     try {
-        const employee = await Employee.findByIdAndUpdate(req.params.eid, req.body, { new: true });
+        const employee = await Employee.findOneAndUpdate({ eid: req.params.eid }, req.body, { new: true })
         return res.status(200).json(employee);
     } catch (err) {
         return res.status(500).json(responseMsg(false, "Invalid Employee ID"));
@@ -66,14 +66,9 @@ routes.put('/employees/:eid', async (req, res) => {
 
 // DELETE: /api/emp/employees?eid=xxx, code 204
 // User can delete employee by employee id
-routes.delete('/employees', async (req, res) => {
+routes.delete('/employees/:eid', async (req, res) => {
     try {
-        const eid = req.query.eid;
-        if(!eid || !mongoose.isValidObjectId(eid)){
-            return res.status(500).json(responseMsg(false, 'Invalid employee ID'));
-        } 
-
-        const employee = await Employee.findByIdAndDelete(eid);
+        const employee = await Employee.findOneAndDelete({ eid: req.params.eid });
     
         if (!employee) {
             return res.status(500).json(responseMsg(false, 'Employee not found'));
