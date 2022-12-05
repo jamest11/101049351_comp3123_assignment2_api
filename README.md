@@ -1,4 +1,2 @@
-# COMP 3123 Assignment 1
+# COMP 3123 Assignment 2 API
 ### James Tory - 101049351
-Sample login data:
-{ "username": "jamest", "password": "12345" }
